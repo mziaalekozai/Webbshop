@@ -1,0 +1,58 @@
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #a5ca79;
+  text-decoration: none;
+}
+nav .logo {
+  width: 5em;
+  height: 5em;
+}
+
+nav a {
+  font-size: 1.7em;
+  padding: 1em;
+  text-decoration: none;
+  font-weight: bold;
+  color: rgb(17, 17, 17);
+}
+nav a:hover {
+  color: whitesmoke;
+  cursor: pointer;
+}
+nav .nav-Center {
+  padding-left: 4em;
+}
+nav .nav-Right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.shoppingCart {
+  display: flex;
+  flex-direction: row;
+  /* margin: 0 -0.5em 0; */
+  padding-right: 0.5em;
+}
+.shoppingCart .CountCartItemShow {
+  margin: -0.6em;
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  padding: 3px;
+  background-color: #24ff00;
+  place-content: center;
+}
+
+svg.shopping-Basket-icon {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.5em;
+}
+.shoppingCart .CountCartItemHidden {
+  margin: -0.6em;
+  width: 1em;
+  visibility: hidden;
+}

@@ -1,0 +1,34 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+  background-color: #a5ca79;
+  padding: 1em;
+}
+
+footer .footer-text {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+footer .social-icons {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  font-size: 2em;
+  color: rgb(255, 225, 225);
+}
+footer .linkedin:hover,
+.facebook:hover,
+.twitter:hover,
+.instagram:hover,
+.admin:hover {
+  cursor: pointer;
+  color: white;
+}
+
+footer .admin {
+  font-size: 1em;
+  font-weight: 600;
+}

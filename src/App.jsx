@@ -1,13 +1,8 @@
 import "./App.css";
+import Root from "./routes/Root.jsx";
 
 function App() {
-  return (
-    <>
-      <div>
-        <h1>Webbshop</h1>
-      </div>
-    </>
-  );
+  return <Root />;
 }
 
 export default App;

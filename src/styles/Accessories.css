@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
+.container .items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  width: 300px;
+  height: auto;
+  margin: 15px;
+  border: 1px solid #a5ca79;
+  border-radius: 1em;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+.container .item-img {
+  width: 8em;
+  height: auto;
+}
+.container .item-info {
+  align-items: center;
+  padding: 1em;
+  font-size: 1.2em;
+}
+.quantityContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 7em;
+  border: 1px solid #a5ca79;
+  border-radius: 8px;
+  place-items: center;
+  padding: 0 0.5em;
+  margin-bottom: 1em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+button.quantityButtonMinus,
+button.quantityButtonPlus {
+  border: none;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.51);
+  font-size: 1.2em;
+}
