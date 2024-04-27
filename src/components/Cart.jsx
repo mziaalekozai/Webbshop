@@ -48,11 +48,7 @@ const Cart = () => {
           {cartItems.map((item) => (
             <div className="menuItemContainer" key={item.id}>
               <div className="menuItem">
-                <img
-                  className="pizzaImage"
-                  src={item.imageUrl}
-                  alt="image of pizza"
-                />
+                <img className="pizzaImage" src={item.imageUrl} alt="image " />
                 <div className="menuItemInfo">
                   <div className="name-Price">
                     <p>{item.name}</p>
@@ -73,7 +69,7 @@ const Cart = () => {
           ))}
         </div>
         <div className="totalInfo">
-          <p>Total price: {totalPrice} kr</p>
+          <p>Total pris: {totalPrice} kr</p>
         </div>
         <div className="cart-btn">
           <button className="checkout" onClick={handleCheckout}>
