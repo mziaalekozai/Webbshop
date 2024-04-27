@@ -2,6 +2,7 @@ import { useState } from "react";
 import useCartStore from "../data/UseCartStore";
 import AddToCart from "../components/AddToCart";
 import "../styles/Cart.css";
+import "../styles/Accessories.css";
 
 const Cart = () => {
   const { cartItems, clearCart } = useCartStore((state) => ({
@@ -91,9 +92,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-// const Cart = () => {
-//   return <div>carts</div>;
-// };
-
-// export default Cart;

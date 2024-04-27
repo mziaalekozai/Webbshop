@@ -16,15 +16,18 @@ nav a {
   padding: 1em;
   text-decoration: none;
   font-weight: bold;
-  color: rgb(17, 17, 17);
+  color: rgb(40, 40, 40);
+}
+.active {
+  color: #ebe6e6;
 }
 nav a:hover {
   color: whitesmoke;
   cursor: pointer;
 }
-nav .nav-Center {
+/* nav .nav-Center {
   padding-left: 4em;
-}
+} */
 nav .nav-Right {
   display: flex;
   flex-direction: row;

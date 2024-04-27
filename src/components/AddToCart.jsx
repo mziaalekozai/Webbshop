@@ -1,12 +1,14 @@
 import PropTypes from "prop-types";
-import UseCartStore from "../data/UseCartStore";
-import "../styles/Accessories.css";
+import UseCartStore from "../data/UseCartStore"; // Adjust the path as necessary
 
 const AddToCart = ({ item, id, quantity }) => {
-  const { updateQuantity, removeFromCart } = UseCartStore((state) => ({
-    updateQuantity: state.updateQuantity,
-    removeFromCart: state.removeFromCart,
-  }));
+  const { updateQuantity, removeFromCart, addToCart } = UseCartStore(
+    (state) => ({
+      updateQuantity: state.updateQuantity,
+      removeFromCart: state.removeFromCart,
+      addToCart: state.addToCart,
+    })
+  );
 
   const decrement = () => {
     if (quantity > 1) {
@@ -15,7 +17,6 @@ const AddToCart = ({ item, id, quantity }) => {
       removeFromCart(id);
     }
   };
-  const { addToCart } = UseCartStore();
 
   return (
     <div className="quantityContainer">
@@ -23,7 +24,7 @@ const AddToCart = ({ item, id, quantity }) => {
         -
       </button>
       <div className="quantity">{quantity}</div>
-      <button onClick={() => addToCart(item)} className="quantityButtonPlus">
+      <button onClick={() => addToCart(item, 1)} className="quantityButtonPlus">
         +
       </button>
     </div>
@@ -32,7 +33,7 @@ const AddToCart = ({ item, id, quantity }) => {
 
 AddToCart.propTypes = {
   item: PropTypes.object.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   quantity: PropTypes.number.isRequired,
 };
 

@@ -25,17 +25,17 @@ const Navbar = () => {
     <div>
       <nav>
         <div className="nav-Left">
-          <NavLink to="/trampoline">Studsmatta</NavLink>
-          <NavLink to="/accessories">Tellbehör</NavLink>
-        </div>
-        <div className="nav-Center">
           <NavLink to="/">
             <img className="logo" src={Logo} alt="logo" />
           </NavLink>
         </div>
-        <div className="nav-Right">
+        <div className="nav-Center">
+          <NavLink to="/trampoline">Studsmatta</NavLink>
+          <NavLink to="/accessories">Tellbehör</NavLink>
           <NavLink to="/contact">Kontakt oss</NavLink>
           <NavLink to="/">Om oss</NavLink>
+        </div>
+        <div className="nav-Right">
           <NavLink to="/cart">
             <div className="shoppingCart">
               <IoCartSharp className="shopping-Basket-icon" />
