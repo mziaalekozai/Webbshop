@@ -3,3 +3,17 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --bg-color: #fff6e9;
+  --mustard-color: #e4d18c;
+  --orange-color: #dd9f42;
+  --dark-orange-color: #d1552c;
+  --text-color: #333333;
+  --shadow-color: #787878;
+  --white-color: #fefefe;
+  --red-color: rgb(230, 52, 52);
+
+  --header-text-font: "Inspiration", cursive;
+  --text-font: "Poppins", sans-serif;
+}

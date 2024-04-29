@@ -32,8 +32,8 @@ const Navbar = () => {
         <div className="nav-Center">
           <NavLink to="/trampoline">Studsmatta</NavLink>
           <NavLink to="/accessories">Tellbehör</NavLink>
-          <NavLink to="/contact">Kontakt oss</NavLink>
-          <NavLink to="/">Om oss</NavLink>
+          {/* <NavLink to="/contact">Kontakt oss</NavLink> */}
+          {/* <NavLink to="/">Om oss</NavLink> */}
         </div>
         <div className="nav-Right">
           <NavLink to="/cart">

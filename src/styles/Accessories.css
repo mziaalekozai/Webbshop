@@ -1,9 +1,13 @@
-.container {
+.main-container {
+  display: flex;
+  flex-direction: column;
+}
+.main-container .container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
   padding: 1em;
 }
 .container .items {
@@ -13,7 +17,7 @@
   align-items: center;
   gap: 1em;
   width: 300px;
-  height: auto;
+  height: 450px;
   margin: 15px;
   border: 1px solid #a5ca79;
   border-radius: 1em;
@@ -47,6 +51,26 @@ button.quantityButtonPlus {
   background: rgba(255, 255, 255, 0.51);
   font-size: 1.2em;
 }
+.main-container .add-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.addItem-btn {
+  background-color: #a5ca79;
+  color: var(--text-color);
+  font-size: 20px;
+  border-radius: 0.6em;
+  padding: 0.15em 1em;
+  margin-top: 1em;
+  border: 1px solid var(--shadow-color);
+  box-shadow: 0px 2px 5px var(--text-color);
+}
+
+.addItem-btn:hover {
+  box-shadow: 0px 2px 5px var(--text-color) inset;
+}
+
 .admin-edit {
   display: flex;
   justify-content: space-between;

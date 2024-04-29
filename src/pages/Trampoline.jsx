@@ -9,6 +9,7 @@ import { db } from "../data/fire.js";
 import { collection, getDocs } from "firebase/firestore";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { DeleteTrampoline } from "../data/crud.js";
 
 const Trampoline = () => {
   const [trampolines, setTrampolines] = useState([]);
@@ -36,7 +37,10 @@ const Trampoline = () => {
     const item = cartItems.find((item) => item.id === itemId);
     return item ? item.quantity : 0;
   };
-
+  const handleDeleteItem = async (itemId) => {
+    await DeleteTrampoline(itemId);
+    setTrampolines(trampolines.filter((item) => item.id !== itemId));
+  };
   return (
     <div className="container">
       {trampolines.map((trampoline, index) => (
@@ -54,7 +58,10 @@ const Trampoline = () => {
           </div>
           <div className="admin-edit">
             <FaEdit className="edit-item" />
-            <RiDeleteBin5Line className="delet-item" />
+            <RiDeleteBin5Line
+              className="delet-item"
+              onClick={() => handleDeleteItem(trampoline.id)}
+            />
           </div>
         </div>
       ))}
