@@ -5,7 +5,11 @@ const HomePage = () => {
     <div className="main-container">
       <div className="main-top">
         <img className="main-img" src={mainImage} alt="main-image" />
-        <button className="main-btn">Visa våra kollektion</button>
+        <div className="main-top-right">
+          <p>Välkommen till HappyHopperz. </p>
+          <p> Där glädje och hälsa går hand i hand!</p>
+          <button className="addItem-btn ">Visa våra kollektion</button>
+        </div>
       </div>
       <div className="main-about-contact">
         <div className="about">
@@ -20,6 +24,7 @@ const HomePage = () => {
         </div>
         <div className="contact">
           <h1>Kontakta oss</h1>
+          <p>Telefon</p>
         </div>
       </div>
     </div>

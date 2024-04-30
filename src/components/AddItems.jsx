@@ -1,54 +1,60 @@
 import { useState, useEffect } from "react";
-import { AddAccessories } from "../data/crud.js";
-import "../styles/AddItems.css";
+import { addProduct } from "../data/crud.js";
 
-const AddItems = () => {
+const AddItems = ({ onProductAdded }) => {
   const [itemName, setItemName] = useState("");
   const [itemPrice, setItemPrice] = useState("");
   const [itemImage, setItemImage] = useState("");
+  const [isValid, setIsValid] = useState(false);
+  const [itemNameError, setItemNameError] = useState("");
+  const [itemPriceError, setItemPriceError] = useState("");
   const [itemNameTouched, setItemNameTouched] = useState(false);
   const [itemPriceTouched, setItemPriceTouched] = useState(false);
-  const [isValid, setIsValid] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [priceError, setPriceError] = useState(""); // Additional state for price-specific error
 
   useEffect(() => {
-    const validateInput = () => {
-      let valid = true;
-      if (itemName.trim() === "" && itemNameTouched) {
-        setErrorMessage("Please enter a name.");
-        valid = false;
-      } else {
-        setErrorMessage("");
-      }
+    validateFields();
+  });
 
-      if (itemPriceTouched) {
-        if (itemPrice.trim() === "") {
-          setPriceError("Please enter a price.");
-          valid = false;
-        } else if (isNaN(parseFloat(itemPrice))) {
-          setPriceError("Please enter only numbers for the price.");
-          valid = false;
-        } else {
-          setPriceError("");
-        }
-      }
+  const validateFields = () => {
+    let valid = true;
+    if (itemName.trim() === "") {
+      setItemNameError("Product name is required.");
+      valid = false;
+    } else {
+      setItemNameError("");
+    }
 
-      setIsValid(valid);
-    };
+    if (itemPrice.trim() === "") {
+      setItemPriceError("Price is required.");
+      valid = false;
+    } else if (isNaN(parseFloat(itemPrice))) {
+      setItemPriceError("Price must be a number.");
+      valid = false;
+    } else {
+      setItemPriceError("");
+    }
 
-    validateInput();
-  }, [itemName, itemPrice, itemNameTouched, itemPriceTouched]);
+    setIsValid(valid);
+  };
 
   const handleAddItemClick = async () => {
+    // Force all fields to be touched to show all errors
+    setItemNameTouched(true);
+    setItemPriceTouched(true);
+
     if (!isValid) {
+      validateFields(); // Validate fields to ensure error messages are updated
+
       return;
     }
-    await AddAccessories({
+
+    const newProduct = {
       name: itemName,
-      price: itemPrice,
-      image: itemImage,
-    });
+      price: parseFloat(itemPrice),
+      image: itemImage || null, // Assume 'null' if no image is specified
+    };
+    await addProduct(newProduct);
+    onProductAdded(); // Call the callback function to update the product list in the parent component
     setItemName("");
     setItemPrice("");
     setItemImage("");
@@ -61,12 +67,14 @@ const AddItems = () => {
       <div className="add-item-input">
         <input
           type="text"
-          placeholder="Namn och info"
+          placeholder="Product Name"
           value={itemName}
           onChange={(e) => setItemName(e.target.value)}
           onBlur={() => setItemNameTouched(true)}
         />
-        {errorMessage && <p className="error-massege"> {errorMessage}</p>}
+        {itemNameTouched && itemNameError && (
+          <div className="error-message">{itemNameError}</div>
+        )}
         <input
           type="number"
           placeholder="Price"
@@ -74,74 +82,25 @@ const AddItems = () => {
           onChange={(e) => setItemPrice(e.target.value)}
           onBlur={() => setItemPriceTouched(true)}
         />
-        {priceError && <p>{priceError}</p>}
+        {itemPriceTouched && itemPriceError && (
+          <div className="error-message">{itemPriceError}</div>
+        )}
         <input
           type="text"
-          placeholder="Bild URL (valfri)"
+          placeholder="Image URL (optional)"
           value={itemImage}
           onChange={(e) => setItemImage(e.target.value)}
         />
+        <button
+          className="addNewItem-btn"
+          onClick={handleAddItemClick}
+          disabled={!isValid}
+        >
+          Add Product
+        </button>
       </div>
-      <button
-        className="addItem-btn"
-        onClick={handleAddItemClick}
-        disabled={!isValid}
-      >
-        Lägg till
-      </button>
     </div>
   );
 };
 
 export default AddItems;
-
-// import { useState } from "react";
-// import { AddAccessories } from "../data/crud.js";
-
-// const AddItems = () => {
-//   const [itemName, setItemName] = useState("");
-//   const [itemPrice, setItemPrice] = useState("");
-//   const [itemImage, setItemImage] = useState("");
-
-//   const handleAddItemClick = async () => {
-//     await AddAccessories({
-//       name: itemName,
-//       price: itemPrice,
-//       image: itemImage,
-//     });
-//     // Återställ input-fälten efter att objektet har lagts till
-//     setItemName("");
-//     setItemPrice("");
-//     setItemImage("");
-//   };
-
-//   return (
-//     <div>
-//       <div className="container">
-//         <div className="add-item">
-//           <input
-//             type="text"
-//             placeholder="Namn"
-//             value={itemName}
-//             onChange={(e) => setItemName(e.target.value)}
-//           />
-//           <input
-//             type="text"
-//             placeholder="Pris"
-//             value={itemPrice}
-//             onChange={(e) => setItemPrice(e.target.value)}
-//           />
-//           <input
-//             type="text"
-//             placeholder="Bild URL (valfri)"
-//             value={itemImage}
-//             onChange={(e) => setItemImage(e.target.value)}
-//           />
-//           <button onClick={handleAddItemClick}>Lägg till</button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default AddItems;

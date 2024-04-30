@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UpdateAccessories } from "../data/crud"; // Säkerställ att denna importering stämmer med din filstruktur
+import { updatedProduct } from "../data/crud"; // Säkerställ att denna importering stämmer med din filstruktur
 import "../styles/AddItems.css";
 const EditItemForm = ({ item, onSave, onCancel }) => {
   const [name, setName] = useState(item.name);
@@ -7,7 +7,7 @@ const EditItemForm = ({ item, onSave, onCancel }) => {
   const [image, setImage] = useState(item.image);
 
   const handleSave = async () => {
-    const success = await UpdateAccessories("Accessories", item.id, {
+    const success = await updatedProduct("Products", item.id, {
       name,
       price,
       image,
@@ -23,7 +23,7 @@ const EditItemForm = ({ item, onSave, onCancel }) => {
   return (
     <div className="container-additem">
       <div className="add-item-input">
-        <label htmlFor="text">Namn</label>
+        <p>Ändra</p>
         <input
           type="text"
           value={name}
@@ -40,13 +40,13 @@ const EditItemForm = ({ item, onSave, onCancel }) => {
           value={image}
           onChange={(e) => setImage(e.target.value)}
         />
-      </div>
-      <button className="addItem-btn" onClick={handleSave}>
+      <button className="addNewItem-btn " onClick={handleSave}>
         Save
       </button>
-      <button className="addItem-btn" onClick={onCancel}>
+      <button className="addNewItem-btn " onClick={onCancel}>
         Cancel
       </button>
+      </div>
     </div>
   );
 };

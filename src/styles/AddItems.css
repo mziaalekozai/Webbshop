@@ -6,6 +6,13 @@
   align-items: center;
   padding: 1em;
 }
+.add-item-input {
+  border: 2px solid #a5ca79;
+  background-color: #a5ca79;
+  border-radius: 1em;
+  margin: 1em;
+  padding: 1em;
+}
 .add-item-input input {
   /* width: 100%; */
   display: flex;
@@ -22,8 +29,12 @@
   /* margin-top: 0.1em; */
   font-size: 13px;
 }
-.container .addItem-btn {
-  background-color: #a5ca79;
+.addNewItem-btn:hover {
+  cursor: pointer;
+  box-shadow: 0px 2px 5px var(--text-color) inset;
+}
+.addNewItem-btn {
+  background-color: #f2f4f0;
   color: var(--text-color);
   font-size: 20px;
   border-radius: 0.6em;

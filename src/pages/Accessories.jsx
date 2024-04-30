@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { UpdateAccessories, DeleteAccessories } from "../data/crud.js";
+import { deletProduct } from "../data/crud.js";
 // import "../styles/Accessories.css";
 import AddToCart from "../components/AddToCart";
 import UseCartStore from "../data/UseCartStore.js";
@@ -17,22 +17,21 @@ const Accessories = () => {
   const [editableItem, setEditableItem] = useState(null); // State to handle item being edited
 
   useEffect(() => {
-    const fetchAccessoriess = async () => {
-      const accessoriesCollection = collection(db, "Accessories");
-      const accessoriesSnapshot = await getDocs(accessoriesCollection);
-      if (accessoriesSnapshot.empty) {
-        console.log("No matching documents.");
-        return;
-      }
-      const accessoriesList = accessoriesSnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setAccessoriess(accessoriesList);
-    };
-
     fetchAccessoriess();
   }, []);
+  const fetchAccessoriess = async () => {
+    const accessoriesCollection = collection(db, "Products");
+    const accessoriesSnapshot = await getDocs(accessoriesCollection);
+    if (accessoriesSnapshot.empty) {
+      console.log("No matching documents.");
+      return;
+    }
+    const accessoriesList = accessoriesSnapshot.docs.map((doc) => ({
+      id: doc.id, // Using Firestore document ID as unique identifier
+      ...doc.data(),
+    }));
+    setAccessoriess(accessoriesList);
+  };
 
   const findQuantity = (itemId) => {
     const item = cartItems.find((item) => item.id === itemId);
@@ -40,7 +39,7 @@ const Accessories = () => {
   };
 
   const handleDeleteItem = async (itemId) => {
-    await DeleteAccessories(itemId);
+    await deletProduct(itemId);
     setAccessoriess(accessoriess.filter((item) => item.id !== itemId));
   };
   // Andra states och hooks som tidigare definierats...
@@ -75,6 +74,7 @@ const Accessories = () => {
         </button>
         {showAddItems && (
           <AddItems
+            onProductAdded={fetchAccessoriess}
             item={editableItem}
             onClose={() => setShowAddItems(false)}
           />

@@ -1,4 +1,39 @@
+.main-top {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  /* height: 10em; */
+  /* background-color: #d3d7cd; */
+}
 .main-img {
   width: 50%;
-  height: 30em;
+  height: auto;
+}
+.main-top-right p {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  color: #50514f;
+}
+.main-top-right {
+  width: 50%;
+  padding: 1em;
+}
+.main-about-contact {
+  margin-bottom: 5em;
+  background-color: #a5ca79;
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+.about,
+.contact {
+  /* text-align: left; */
+  justify-content: center;
+  width: 50%;
+  padding: 1em;
 }
