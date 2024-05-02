@@ -55,10 +55,10 @@ const Trampoline = () => {
     setIsEditing(true);
   };
 
-  const handleCloseEdit = () => {
+  const handleCloseForm = () => {
     setIsEditing(false);
     setEditableItem(null);
-    setShowAddItems(true); // Korrekt sätt att uppdatera state
+    setShowAddItems(false); // Korrekt sätt att uppdatera state
   };
 
   return (
@@ -77,15 +77,16 @@ const Trampoline = () => {
           <AddItems
             onProductAdded={fetchTrampolines}
             item={editableItem}
-            onClose={() => setShowAddItems(false)}
+            onSave={handleCloseForm}
+            onCancel={handleCloseForm}
           />
         )}
         {isEditing && (
           <EditItemForm
             item={editableItem}
-            onSave={handleCloseEdit}
-            onCancel={handleCloseEdit}
             onUpdate={fetchTrampolines} // Ny prop för att hämta uppdaterade data
+            onSave={handleCloseForm}
+            onCancel={handleCloseForm}
           />
         )}
       </div>

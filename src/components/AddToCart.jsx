@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import UseCartStore from "../data/UseCartStore"; // Adjust the path as necessary
-
+import UseCartStore from "../data/UseCartStore";
+import "../styles/Cart.css";
 const AddToCart = ({ item, id, quantity }) => {
   const { updateQuantity, removeFromCart, addToCart } = UseCartStore(
     (state) => ({

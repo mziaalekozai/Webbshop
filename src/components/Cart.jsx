@@ -45,35 +45,27 @@ const Cart = () => {
     <div className="cart-Container">
       <div className="cart">
         <h1>Kundvagn</h1>
-        <div className="Container">
+        <div className="car-item">
           {cartItems.map((item) => (
-            <div className="menuItemContainer" key={item.id}>
-              <div className="menuItem">
-                <img className="image-item" src={item.image} alt="image " />
-                <div className="menuItemInfo">
-                  <div className="name-Price">
-                    <p>{item.name}</p>
-                    <p className="priceItem">{item.price} kr</p>
-                  </div>
-                  <p>{item.info}</p>
-                  <p className="ingredients">{item.ingredients}</p>
-                  <div className="addToCart-editIcons">
-                    <AddToCart
-                      item={item}
-                      id={item.id}
-                      quantity={item.quantity}
-                    />
-                  </div>
+            <div className="menuItem" key={item.id}>
+              <img className="image-item" src={item.image} alt="image " />
+              <div className="menuItemInfo">
+                <div className="name-Price">
+                  <p className="item-name">{item.name}</p>
+                  <p className="item-price">Prise: {item.price} kr</p>
                 </div>
+
+                <AddToCart item={item} id={item.id} quantity={item.quantity} />
               </div>
             </div>
           ))}
         </div>
         <div className="totalInfo">
-          <p>Total pris: {totalPrice} kr</p>
+          <p>Total pris: </p>
+          <p>{totalPrice} kr</p>
         </div>
         <div className="cart-btn">
-          <button className="checkout" onClick={handleCheckout}>
+          <button className="checkout-btn" onClick={handleCheckout}>
             Checkout
           </button>
           <p

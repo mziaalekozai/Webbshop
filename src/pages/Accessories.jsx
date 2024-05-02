@@ -14,7 +14,8 @@ const Accessories = () => {
   const [accessoriess, setAccessoriess] = useState([]);
   const cartItems = UseCartStore((state) => state.cartItems);
   const [showAddItems, setShowAddItems] = useState(false);
-  const [editableItem, setEditableItem] = useState(null); // State to handle item being edited
+  const [editableItem, setEditableItem] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     fetchAccessoriess();
@@ -46,16 +47,16 @@ const Accessories = () => {
     setAccessoriess(accessoriess.filter((item) => item.id !== itemId));
   };
   // Andra states och hooks som tidigare definierats...
-  const [isEditing, setIsEditing] = useState(false); // Ny state för att visa/dölja redigeringsformuläret
 
   const handleEditItemClick = (item) => {
     setEditableItem(item);
     setIsEditing(true);
   };
 
-  const handleCloseEdit = () => {
+  const handleCloseForm = () => {
     setIsEditing(false);
     setEditableItem(null);
+    setShowAddItems(false); // Korrekt sätt att uppdatera state
   };
 
   // const handleEditItemClick = (item) => {
@@ -79,14 +80,15 @@ const Accessories = () => {
           <AddItems
             onProductAdded={fetchAccessoriess}
             item={editableItem}
-            onClose={() => setShowAddItems(false)}
+            onSave={handleCloseForm}
+            onCancel={handleCloseForm}
           />
         )}
         {isEditing && (
           <EditItemForm
             item={editableItem}
-            onSave={handleCloseEdit}
-            onCancel={handleCloseEdit}
+            onSave={handleCloseForm}
+            onCancel={handleCloseForm}
             onUpdate={fetchAccessoriess}
           />
         )}
