@@ -11,11 +11,12 @@ import { db } from "./fire.js";
 const deletProduct = async (itemId) => {
   await deleteDoc(doc(db, "Products", itemId));
 };
-const addProduct = async ({ name, price, image }) => {
+const addProduct = async ({ name, price, type, image }) => {
   // Lägg till dokument i "Products"-samlingen med de insamlade uppgifterna
   await addDoc(collection(db, "Products"), {
     name: name,
     price: price,
+    type: type,
     image: image,
   });
 

@@ -4,7 +4,7 @@ import { deletProduct } from "../data/crud.js";
 import AddToCart from "../components/AddToCart";
 import UseCartStore from "../data/UseCartStore.js";
 import AddItems from "../components/AddItems.jsx";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { db } from "../data/fire.js";
@@ -20,14 +20,17 @@ const Accessories = () => {
     fetchAccessoriess();
   }, []);
   const fetchAccessoriess = async () => {
-    const accessoriesCollection = collection(db, "Products");
+    const accessoriesCollection = query(
+      collection(db, "Products"),
+      where("type", "==", "accessory")
+    );
     const accessoriesSnapshot = await getDocs(accessoriesCollection);
     if (accessoriesSnapshot.empty) {
       console.log("No matching documents.");
       return;
     }
     const accessoriesList = accessoriesSnapshot.docs.map((doc) => ({
-      id: doc.id, // Using Firestore document ID as unique identifier
+      id: doc.id,
       ...doc.data(),
     }));
     setAccessoriess(accessoriesList);
@@ -84,6 +87,7 @@ const Accessories = () => {
             item={editableItem}
             onSave={handleCloseEdit}
             onCancel={handleCloseEdit}
+            onUpdate={fetchAccessoriess}
           />
         )}
       </div>

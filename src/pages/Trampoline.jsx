@@ -2,7 +2,7 @@ import AddToCart from "../components/AddToCart";
 import UseCartStore from "../data/UseCartStore.js";
 import { useEffect, useState } from "react";
 import { db } from "../data/fire.js";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { deletProduct, addProduct, updatedProduct } from "../data/crud.js";
@@ -18,47 +18,47 @@ const Trampoline = () => {
   useEffect(() => {
     fetchTrampolines();
   }, []);
+  const [loading, setLoading] = useState(false);
+
   const fetchTrampolines = async () => {
-    const trampolineCollection = collection(db, "Products");
-    const trampolineSnapshot = await getDocs(trampolineCollection);
-    if (trampolineSnapshot.empty) {
-      console.log("No matching documents.");
-      return;
+    setLoading(true);
+    try {
+      const trampolineCollection = query(
+        collection(db, "Products"),
+        where("type", "==", "trampoline")
+      );
+      const snapshot = await getDocs(trampolineCollection);
+      const trampolineList = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setTrampolines(trampolineList);
+    } catch (error) {
+      console.error("Failed to fetch trampolines:", error);
+    } finally {
+      setLoading(false);
     }
-    const trampolineList = trampolineSnapshot.docs.map((doc) => ({
-      id: doc.id, // Using Firestore document ID as unique identifier
-      ...doc.data(),
-    }));
-    setTrampolines(trampolineList);
   };
 
   const findQuantity = (itemId) => {
     const item = cartItems.find((item) => item.id === itemId);
     return item ? item.quantity : 0;
   };
-
+  const [isEditing, setIsEditing] = useState(false);
   const handleDeleteItem = async (itemId) => {
     await deletProduct(itemId);
     setTrampolines(trampolines.filter((item) => item.id !== itemId));
   };
-  // Andra states och hooks som tidigare definierats...
-  const [isEditing, setIsEditing] = useState(false); // Ny state för att visa/dölja redigeringsformuläret
 
   const handleEditItemClick = (item) => {
     setEditableItem(item);
     setIsEditing(true);
   };
 
-  // const handleEditItemClick = async (item) => {
-  //   await addProduct(item);
-  //   setTrampolines(trampolines.filter((item) => item.id !== item));
-  //   setEditableItem(item);
-  //   setIsEditing(true);
-  // };
-
   const handleCloseEdit = () => {
     setIsEditing(false);
     setEditableItem(null);
+    setShowAddItems(true); // Korrekt sätt att uppdatera state
   };
 
   return (
@@ -85,6 +85,7 @@ const Trampoline = () => {
             item={editableItem}
             onSave={handleCloseEdit}
             onCancel={handleCloseEdit}
+            onUpdate={fetchTrampolines} // Ny prop för att hämta uppdaterade data
           />
         )}
       </div>

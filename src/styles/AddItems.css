@@ -7,6 +7,15 @@
   padding: 1em;
 }
 .add-item-input {
+  position: fixed;
+  top: 26%;
+  right: 37.5%;
+  /* width: 100%; */
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border: 2px solid #a5ca79;
   background-color: #a5ca79;
   border-radius: 1em;
