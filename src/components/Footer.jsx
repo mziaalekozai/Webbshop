@@ -3,6 +3,8 @@ import { RiFacebookCircleFill } from "react-icons/ri";
 import { BiLogoInstagramAlt } from "react-icons/bi";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { RiLinkedinBoxFill } from "react-icons/ri";
+import Login from "./Login.jsx";
+
 const Footer = () => {
   return (
     <footer>
@@ -13,7 +15,11 @@ const Footer = () => {
         <BiLogoInstagramAlt className="instagram" />
         <AiFillTwitterCircle className="twitter" />
       </div>
-      <p className="admin">Admin</p>
+      <div className="admin">
+        {" "}
+        <Login />
+        Admin
+      </div>
     </footer>
   );
 };

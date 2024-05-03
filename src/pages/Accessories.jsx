@@ -9,32 +9,36 @@ import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { db } from "../data/fire.js";
 import EditItemForm from "../components/EditItemForm.jsx"; // Importera EditItemForm
+import SortBy from "../components/SortBy.jsx";
+import Search from "../components/Search.jsx";
 
 const Accessories = () => {
   const [accessoriess, setAccessoriess] = useState([]);
+  const [allAccessories, setAllAccessories] = useState([]);
+
   const cartItems = UseCartStore((state) => state.cartItems);
   const [showAddItems, setShowAddItems] = useState(false);
   const [editableItem, setEditableItem] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchAccessoriess();
   }, []);
   const fetchAccessoriess = async () => {
+    setLoading(true);
     const accessoriesCollection = query(
       collection(db, "Products"),
       where("type", "==", "accessory")
     );
     const accessoriesSnapshot = await getDocs(accessoriesCollection);
-    if (accessoriesSnapshot.empty) {
-      console.log("No matching documents.");
-      return;
-    }
     const accessoriesList = accessoriesSnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
     setAccessoriess(accessoriesList);
+    setAllAccessories(accessoriesList); // Spara en kopia av originaldatan
+    setLoading(false);
   };
 
   const findQuantity = (itemId) => {
@@ -59,13 +63,23 @@ const Accessories = () => {
     setShowAddItems(false); // Korrekt sätt att uppdatera state
   };
 
-  // const handleEditItemClick = (item) => {
-  //   setEditableItem(item); // Set the item to be edited
-  //   setShowAddItems(true); // Open the form
-  // };
-
+  const handleSearch = (searchTerm) => {
+    if (!searchTerm.trim()) {
+      setAccessoriess(allAccessories); // Återställ till original när söktermen är tom
+    } else {
+      const lowercasedFilter = searchTerm.toLowerCase();
+      const filteredData = allAccessories.filter(
+        (item) =>
+          item.name.toLowerCase().includes(lowercasedFilter) ||
+          item.type.toLowerCase().includes(lowercasedFilter)
+      );
+      setAccessoriess(filteredData);
+    }
+  };
   return (
     <div className="main-container">
+      <Search onSearch={handleSearch} />
+
       <div className="add-item">
         <button
           className="addItem-btn"
@@ -93,6 +107,7 @@ const Accessories = () => {
           />
         )}
       </div>
+      <SortBy list={accessoriess} setList={setAccessoriess} />
 
       <div className="container">
         {accessoriess.map((accessories, index) => (
