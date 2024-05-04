@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-
+import { useState } from "react";
+import "../styles/Search.css";
+import { MdSearch } from "react-icons/md";
 const Search = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -10,13 +11,13 @@ const Search = ({ onSearch }) => {
   };
 
   return (
-    <div style={{ margin: "20px 0" }}>
+    <div className="search-container">
+      <MdSearch className="search-icon" />
       <input
         type="text"
         placeholder="Sök..."
         value={searchTerm}
         onChange={handleSearchChange}
-        style={{ width: "100%", padding: "10px" }}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 import AddToCart from "../components/AddToCart";
 import UseCartStore from "../data/UseCartStore.js";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { db } from "../data/fire.js";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { FaEdit } from "react-icons/fa";

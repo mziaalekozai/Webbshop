@@ -1,0 +1,21 @@
+.search-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #343434;
+  border-radius: 4px;
+  padding-left: 5px;
+  margin: 1em;
+  width: fit-conte;
+}
+
+.search-container input {
+  border: none;
+  outline: none;
+  padding: 8px;
+  width: 100%;
+}
+
+.search-container svg {
+  margin-right: 5px;
+  color: #ccc;
+}

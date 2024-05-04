@@ -9,18 +9,6 @@ const Navbar = () => {
     state.cartItems.reduce((total, item) => total + item.quantity, null)
   );
 
-  // const ShoppingCart = () => (
-  //   <NavLink to="/cart">
-  //     <div className="shoppingCart">
-  //       <IoCartSharp className="shopping-Basket-icon" />
-  //       {totalQuantity > 0 ? (
-  //         <div className="CountCartItemShow">{totalQuantity}</div>
-  //       ) : (
-  //         <div className="CountCartItemHidden">{totalQuantity}</div>
-  //       )}
-  //     </div>
-  // </NavLink>
-  // );
   return (
     <div>
       <nav>

@@ -1,7 +1,9 @@
-import React from "react";
+import { useState } from "react";
 import { GrSort } from "react-icons/gr";
-
+import "../styles/SortBy.css";
 const SortBy = ({ list, setList }) => {
+  const [showSortOptions, setShowSortOptions] = useState(false);
+
   const sortItems = (direction, criteria = "price") => {
     const sortedItems = [...list].sort((a, b) => {
       if (criteria === "price") {
@@ -15,74 +17,27 @@ const SortBy = ({ list, setList }) => {
       }
     });
     setList(sortedItems);
+    setShowSortOptions(false); // Stäng menyn efter valet
   };
 
   return (
-    <div>
-      <button onClick={() => sortItems("asc")}>
-        <GrSort /> Lägsta pris
+    <div className="sort-container">
+      <button
+        className="sort-btn"
+        onClick={() => setShowSortOptions(!showSortOptions)}
+      >
+        <GrSort /> Sortera
       </button>
-      <button onClick={() => sortItems("desc")}>
-        <GrSort /> Högsta pris
-      </button>
-      <button onClick={() => sortItems("asc", "name")}>
-        <GrSort /> A - Ö
-      </button>
-      <button onClick={() => sortItems("desc", "name")}>
-        <GrSort /> Ö - A
-      </button>
+      {showSortOptions && (
+        <div className="sort-options">
+          <button onClick={() => sortItems("asc")}>Lägsta pris</button>
+          <button onClick={() => sortItems("desc")}>Högsta pris</button>
+          <button onClick={() => sortItems("asc", "name")}>A - Ö</button>
+          <button onClick={() => sortItems("desc", "name")}>Ö - A</button>
+        </div>
+      )}
     </div>
   );
 };
 
 export default SortBy;
-
-// import React from "react";
-// import { GrSort } from "react-icons/gr";
-
-// const SortBy = ({ list, setList }) => {
-//   const sortItems = (direction) => {
-//     const sortedItems = [...list].sort((a, b) => {
-//       if (direction === "asc") {
-//         return a.price - b.price; // Antaget att sortering sker på pris
-//       } else {
-//         return b.price - a.price;
-//       }
-//     });
-//     setList(sortedItems);
-//   };
-
-//   return (
-//     <div>
-//       <button onClick={() => sortItems("asc")}>
-//         <GrSort /> Lägsta pris
-//       </button>
-//       <button onClick={() => sortItems("desc")}>
-//         <GrSort /> Högsta pris
-//       </button>
-//       <button onClick={() => sortItems("desc")}>
-//         <GrSort /> A - Ö
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default SortBy;
-
-// // import React from "react";
-// // import { GrSort } from "react-icons/gr";
-
-// // const SortBy = ({ onSort }) => {
-// //   return (
-// //     <div>
-// //       <button onClick={() => onSort("asc")}>
-// //         <GrSort /> Sort Ascending
-// //       </button>
-// //       <button onClick={() => onSort("desc")}>
-// //         <GrSort /> Sort Descending
-// //       </button>
-// //     </div>
-// //   );
-// // };
-
-// // export default SortBy;

@@ -21,21 +21,21 @@ const AddItems = ({ onProductAdded, onCancel }) => {
   const validateFields = () => {
     let valid = true;
     if (!itemName.trim()) {
-      setItemNameError("Product name is required.");
+      setItemNameError("Produktnamn är obligatoriskt.");
       valid = false;
     } else {
       setItemNameError("");
     }
 
     if (!itemType.trim()) {
-      setItemTypeError("Product type is required.");
+      setItemTypeError("Produkttyp är obligatorisk.");
       valid = false;
     } else {
       setItemTypeError("");
     }
 
     if (!itemPrice.trim() || isNaN(parseFloat(itemPrice))) {
-      setItemPriceError("Price must be a number.");
+      setItemPriceError("Priset måste vara ett nummer.");
       valid = false;
     } else {
       setItemPriceError("");
@@ -45,8 +45,6 @@ const AddItems = ({ onProductAdded, onCancel }) => {
   };
 
   const handleAddItemClick = async () => {
-    console.log("onCancel type:", typeof onCancel); // Detta bör logga 'function'
-
     if (!isValid) {
       validateFields();
       return;
@@ -120,7 +118,7 @@ const AddItems = ({ onProductAdded, onCancel }) => {
           Add Product
         </button>
         <button className="addNewItem-btn" onClick={onCancel}>
-          Cancel
+          Avbryt
         </button>
       </div>
     </div>

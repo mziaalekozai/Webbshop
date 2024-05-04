@@ -23,7 +23,7 @@ footer .linkedin:hover,
 .facebook:hover,
 .twitter:hover,
 .instagram:hover,
-.admin:hover {
+.admin-button:hover {
   cursor: pointer;
   color: white;
 }

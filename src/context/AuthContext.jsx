@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const isAdmin = user.email === "admin@example.com"; // Adjust based on your admin logic
+        const isAdmin = user.email === "admin@admin.com"; // Adjust based on your admin logic
         const userData = { uid: user.uid, email: user.email, isAdmin };
         setCurrentUser(userData);
         localStorage.setItem("currentUser", JSON.stringify(userData));

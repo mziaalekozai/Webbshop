@@ -11,6 +11,7 @@ import { db } from "../data/fire.js";
 import EditItemForm from "../components/EditItemForm.jsx"; // Importera EditItemForm
 import SortBy from "../components/SortBy.jsx";
 import Search from "../components/Search.jsx";
+import { useAuth } from "../context/AuthContext.jsx";
 
 const Accessories = () => {
   const [accessoriess, setAccessoriess] = useState([]);
@@ -21,6 +22,7 @@ const Accessories = () => {
   const [editableItem, setEditableItem] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { currentUser } = useAuth(); // Using useAuth to access the current user
 
   useEffect(() => {
     fetchAccessoriess();
@@ -45,6 +47,7 @@ const Accessories = () => {
     const item = cartItems.find((item) => item.id === itemId);
     return item ? item.quantity : 0;
   };
+  const isAdmin = currentUser && currentUser.isAdmin; // Check if the current user is an admin
 
   const handleDeleteItem = async (itemId) => {
     await deletProduct(itemId);
@@ -81,15 +84,11 @@ const Accessories = () => {
       <Search onSearch={handleSearch} />
 
       <div className="add-item">
-        <button
-          className="addItem-btn"
-          onClick={() => {
-            setEditableItem(null);
-            setShowAddItems(true);
-          }}
-        >
-          Lägg till item
-        </button>
+        {isAdmin && ( // Check if an admin is logged in
+          <button className="addItem-btn" onClick={() => setShowAddItems(true)}>
+            Lägg till item
+          </button>
+        )}
         {showAddItems && (
           <AddItems
             onProductAdded={fetchAccessoriess}
@@ -127,16 +126,19 @@ const Accessories = () => {
                 quantity={findQuantity(accessories.id)}
               />
             </div>
-            <div className="admin-edit">
-              <FaEdit
-                className="edit-item"
-                onClick={() => handleEditItemClick(accessories)}
-              />
-              <RiDeleteBin5Line
-                className="delete-item"
-                onClick={() => handleDeleteItem(accessories.id)}
-              />
-            </div>
+            {isAdmin && (
+              <div className="admin-edit">
+                <FaEdit
+                  className="edit-item"
+                  // onClick={() => setEditableItem(trampoline)}
+                  onClick={() => handleEditItemClick(accessories)}
+                />
+                <RiDeleteBin5Line
+                  className="delete-item"
+                  onClick={() => handleDeleteItem(accessories.id)}
+                />
+              </div>
+            )}
           </div>
         ))}
       </div>
