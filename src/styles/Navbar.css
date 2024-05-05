@@ -17,6 +17,7 @@ nav a {
   text-decoration: none;
   font-weight: bold;
   color: rgb(40, 40, 40);
+  font-family: "Times New Roman", Times, serif;
 }
 .active {
   color: #ebe6e6;
