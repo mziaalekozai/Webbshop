@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid #a5ca79;
+  border: 2px solid #dbdbdb;
   background-color: #a5ca79;
   border-radius: 1em;
   /* margin: 1em; */
@@ -17,7 +17,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid #a5ca79;
   background-color: #a5ca79;
   border-radius: 1em;
   text-align: center;

@@ -65,7 +65,7 @@ const Cart = () => {
         </div>
         <div className="cart-btn">
           <button className="checkout-btn" onClick={handleCheckout}>
-            Checkout
+            Bekräfta köp
           </button>
           <p
             className="clearbtn"
@@ -74,7 +74,7 @@ const Cart = () => {
               setCheckoutComplete(false);
             }}
           >
-            Clear
+            Avbryta köp
           </p>
         </div>
       </div>
