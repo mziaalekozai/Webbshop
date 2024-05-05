@@ -1,4 +1,4 @@
-import Logo from "../assets/image/logo.png";
+import Logo from "../assets/logo.png";
 import { NavLink } from "react-router-dom";
 import "../styles/Navbar.css";
 import UseCartStore from "../data/UseCartStore";
