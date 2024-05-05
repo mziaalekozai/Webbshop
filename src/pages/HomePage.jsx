@@ -1,14 +1,11 @@
 import "../styles/HomePage.css";
-import mainImage from "../assets/main-image.jpg";
 const HomePage = () => {
   return (
     <div className="main-container">
       <div className="main-top">
-        <img className="main-img" src={mainImage} alt="main-image" />
-        <div className="main-top-right">
+        <div className="main-top-text">
           <p>Välkommen till HappyHopperz. </p>
           <p> Där glädje och hälsa går hand i hand!</p>
-          <button className="addItem-btn ">Visa våra kollektion</button>
         </div>
       </div>
       <div className="main-about-contact">
@@ -24,7 +21,12 @@ const HomePage = () => {
         </div>
         <div className="contact">
           <h1>Kontakta oss</h1>
-          <p>Telefon</p>
+          <h4>Producktinformation och support</h4>
+          <p>0321-00 00 01</p>
+          <h4>Hantera din order</h4>
+          <p>0321-00 00 02</p>
+          <h4>Retur och reklamation</h4>
+          <p>0321-00 00 03</p>
         </div>
       </div>
     </div>

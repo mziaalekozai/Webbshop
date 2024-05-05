@@ -10,8 +10,6 @@
   position: fixed;
   top: 26%;
   right: 37.5%;
-  /* width: 100%; */
-  /* height: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,11 +19,11 @@
   border-radius: 1em;
   margin: 1em;
   padding: 1em;
+  z-index: 2;
 }
 .add-item-input input {
-  /* width: 100%; */
+  width: 100%;
   display: flex;
-  /* flex-direction: column; */
   padding: 10px;
   border-radius: 10px;
   border: 1px solid var(--shadow-color);
@@ -35,7 +33,6 @@
 }
 .container .error-massege {
   color: var(--red-color);
-  /* margin-top: 0.1em; */
   font-size: 13px;
 }
 .addNewItem-btn:hover {
@@ -51,4 +48,19 @@
   margin-top: 1em;
   border: 1px solid var(--shadow-color);
   box-shadow: 0px 2px 5px var(--text-color);
+}
+@media (max-width: 800px) {
+  .add-item-input {
+    right: 30%;
+  }
+}
+@media (max-width: 600px) {
+  .add-item-input {
+    right: 20%;
+  }
+}
+@media (max-width: 400px) {
+  .add-item-input {
+    right: 15%;
+  }
 }

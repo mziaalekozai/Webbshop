@@ -1,6 +1,6 @@
+import "../styles/Products.css";
 import { useState, useEffect } from "react";
 import { deletProduct } from "../data/crud.js";
-// import "../styles/Accessories.css";
 import AddToCart from "../components/AddToCart";
 import UseCartStore from "../data/UseCartStore.js";
 import AddItems from "../components/AddItems.jsx";

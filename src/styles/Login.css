@@ -2,8 +2,6 @@
   position: fixed;
   top: 20%;
   right: 40%;
-  /* width: 90%; */
-  /* height: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,6 +20,7 @@
   border: 2px solid #a5ca79;
   background-color: #a5ca79;
   border-radius: 1em;
+  text-align: center;
   margin: 1em;
   gap: 1em;
 }
@@ -62,4 +61,19 @@
   border-radius: 0.6em;
   border: 1px solid var(--shadow-color);
   box-shadow: 0px 2px 5px var(--text-color);
+}
+@media (max-width: 800px) {
+  .login-container {
+    right: 30%;
+  }
+}
+@media (max-width: 600px) {
+  .login-container {
+    right: 20%;
+  }
+}
+@media (max-width: 400px) {
+  .login-container {
+    right: 15%;
+  }
 }

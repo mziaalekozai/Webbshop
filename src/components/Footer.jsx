@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../styles/Footer.css";
 import { RiFacebookCircleFill, RiLinkedinBoxFill } from "react-icons/ri";
 import { BiLogoInstagramAlt } from "react-icons/bi";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import Login from "./Login.jsx";
-import { useAuth } from "../context/AuthContext.jsx"; // Importera useAuth från din context
+import { useAuth } from "../context/AuthContext.jsx";
 
 const Footer = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -44,7 +44,6 @@ const Footer = () => {
         <p onClick={toggleLogin} className="admin-button">
           {currentUser ? "Logga ut" : "Admin"}
         </p>
-        {/* Villkorlig rendering baserad på showLogin tillståndet */}
         {showLogin && <Login />}
       </div>
     </footer>

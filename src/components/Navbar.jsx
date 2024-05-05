@@ -1,9 +1,8 @@
 import Logo from "../assets/image/logo.png";
-import { IoCartSharp } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import "../styles/Navbar.css";
 import UseCartStore from "../data/UseCartStore";
-
+import { SlBasket } from "react-icons/sl";
 const Navbar = () => {
   const totalQuantity = UseCartStore((state) =>
     state.cartItems.reduce((total, item) => total + item.quantity, null)
@@ -20,13 +19,11 @@ const Navbar = () => {
         <div className="nav-Center">
           <NavLink to="/trampoline">Studsmatta</NavLink>
           <NavLink to="/accessories">Tillbehör</NavLink>
-          {/* <NavLink to="/contact">Kontakt oss</NavLink> */}
-          {/* <NavLink to="/">Om oss</NavLink> */}
         </div>
         <div className="nav-Right">
           <NavLink to="/cart">
             <div className="shoppingCart">
-              <IoCartSharp className="shopping-Basket-icon" />
+              <SlBasket className="shopping-Basket-icon" />
               {totalQuantity > 0 ? (
                 <div className="CountCartItemShow">{totalQuantity}</div>
               ) : (
