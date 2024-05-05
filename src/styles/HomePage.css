@@ -11,7 +11,7 @@
 }
 .main-top-text {
   padding: 2em;
-  background-color: #a6ca79b7;
+  background-color: #a6ca79e1;
   border-radius: 1em;
 }
 
@@ -19,7 +19,7 @@
   font-size: 2em;
   font-weight: bold;
   margin-bottom: 0.5em;
-  color: #1e1e1e;
+  color: #fcf7f7;
 }
 
 .main-about-contact h1 {
@@ -42,7 +42,11 @@
   width: 50%;
   padding: 1em 2em;
 }
+
 @media (max-width: 720px) {
+  .main-top {
+    height: 50vh;
+  }
   .main-about-contact {
     display: flex;
     flex-direction: column;
@@ -64,11 +68,21 @@
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 450px) {
+  .main-top {
+    height: 33vh;
+  }
   .main-about-contact h1 {
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
   .main-top-text {
     padding: 0.5em;
+  }
+  .main-top-text p {
+    font-size: 1em;
+  }
+  .main-about-contact {
+    margin-bottom: 0.1em;
+    font-size: 1em;
   }
 }

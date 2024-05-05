@@ -72,7 +72,7 @@ const AddItems = ({ onProductAdded, onCancel }) => {
       <div className="add-item-input">
         <input
           type="text"
-          placeholder="Product Name"
+          placeholder="Produktnamn och produktinfo"
           value={itemName}
           onChange={(e) => setItemName(e.target.value)}
           onBlur={() => setItemNameTouched(true)}
@@ -83,7 +83,7 @@ const AddItems = ({ onProductAdded, onCancel }) => {
 
         <input
           type="number"
-          placeholder="Price"
+          placeholder="Pris"
           value={itemPrice}
           onChange={(e) => setItemPrice(e.target.value)}
           onBlur={() => setItemPriceTouched(true)}
@@ -94,7 +94,7 @@ const AddItems = ({ onProductAdded, onCancel }) => {
 
         <input
           type="text"
-          placeholder="Image URL (optional)"
+          placeholder="Bildadress (valfritt)"
           value={itemImage}
           onChange={(e) => setItemImage(e.target.value)}
         />
@@ -103,9 +103,9 @@ const AddItems = ({ onProductAdded, onCancel }) => {
           onChange={(e) => setItemType(e.target.value)}
           onBlur={() => setItemTypeTouched(true)}
         >
-          <option value="">Select Type</option>
-          <option value="accessory">Accessory</option>
-          <option value="trampoline">Trampoline</option>
+          <option value="">Välj Typ</option>
+          <option value="trampoline">Studsmatta</option>
+          <option value="accessory">Tillbehör</option>
         </select>
         {itemTypeTouched && itemTypeError && (
           <div className="error-message">{itemTypeError}</div>
@@ -115,7 +115,7 @@ const AddItems = ({ onProductAdded, onCancel }) => {
           onClick={handleAddItemClick}
           disabled={!isValid}
         >
-          Add Product
+          Lägg till
         </button>
         <button className="addNewItem-btn" onClick={onCancel}>
           Avbryt
